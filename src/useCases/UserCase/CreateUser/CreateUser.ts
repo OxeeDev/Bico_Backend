@@ -1,4 +1,5 @@
 import { User } from "../../../entities/User";
+import { IMailProvider } from '../../../providers/IMaillProvider';
 import { IUserRepository } from "../../../repositories/IUserRepository";
 import { ICreateUserDTO } from "./ICreateUserDTO";
 
@@ -24,3 +25,4 @@ export class CreateUser {
     return result
   }
 }
+

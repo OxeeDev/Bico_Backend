@@ -3,7 +3,7 @@ import { CreateUser } from "./CreateUser";
 
 export class CreateUserController {
   constructor(
-    private createUser: CreateUser
+    private createUser: CreateUser,
   ) {}
 
   async handle(req: Request, res: Response ) {

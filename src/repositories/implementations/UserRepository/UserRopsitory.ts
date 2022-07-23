@@ -1,6 +1,5 @@
 import { User } from "../../../entities/User";
 import { IUserRepository } from "../../IUserRepository";
-
 import { PrismaClient } from "@prisma/client";
 import { hash } from "bcrypt";
 
@@ -41,6 +40,21 @@ export class UserRopsitory implements IUserRepository {
     const result = await this.crypt(password, 1);
 
     return result;
+  }
+
+  async randompass(): Promise<number> {
+ 
+      var min = Math.ceil(0);
+      var max = Math.floor(99);
+      return Math.floor(Math.random() * (max - min)) + min;
+    
+  }
+  async savetemppass(pass: string,email: string): Promise<string> {
+    const Pass = await this.prisma.user.update({
+      where: { email: email },
+      data: { temp_password: pass },
+    })
+    return Pass;
   }
 
 }

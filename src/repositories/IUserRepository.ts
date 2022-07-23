@@ -5,4 +5,6 @@ export interface IUserRepository {
   findByUser(id: number): Promise<User>
   save(user: User): Promise<User>
   encryptpass(password: string): Promise<string>
+  randompass():Promise<number>
+  savetemppass(pass: string,email: string): Promise<string> 
 }

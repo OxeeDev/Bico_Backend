@@ -15,4 +15,5 @@ model User {
   cpf_or_cnpj  String
   age          Int
   create_at    DateTime @default(now())
+  temp_password String? 
 }
