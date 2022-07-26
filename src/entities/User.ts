@@ -5,6 +5,7 @@ export class User {
     public email: string,
     public password: string,
     public cpf_or_cnpj: string,
-    public age: string
+    public age: number,
+    public temp_password?: string
   ) {}
 }

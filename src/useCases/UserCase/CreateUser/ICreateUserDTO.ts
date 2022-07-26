@@ -3,5 +3,5 @@ export interface ICreateUserDTO {
   email: string,
   password: string,
   cpf_or_cnpj: string,
-  age: string
+  age: number
 }

@@ -1,14 +1,14 @@
 import { User } from "../../../entities/User";
 import { IUserRepository } from "../../IUserRepository";
 import { PrismaClient } from "@prisma/client";
-import { hash } from "bcrypt";
-
+import { hash,compare } from "bcrypt";
+import jwt from "jsonwebtoken"
 
 export class UserRopsitory implements IUserRepository {
   private prisma: PrismaClient = new PrismaClient();
   private crypt: Function = hash;
-
-
+  private compare: Function = compare;
+  private generate: Function = jwt.sign;
   async findByEmail(email: string): Promise<User> {
     const user = await this.prisma.user.findUnique({
       where: {
@@ -54,7 +54,14 @@ export class UserRopsitory implements IUserRepository {
       where: { email: email },
       data: { temp_password: pass },
     })
-    return Pass;
+    return "ok";
   }
-
+  async comparePass(passdb: string, passuser: string): Promise<boolean> {
+      const isok = await this.compare(passuser,passdb)
+      return isok;
+  }
+  async generateToken(useremail: string): Promise<string> {
+      const senha = await this.generate({"email":useremail},"loli")
+        return senha;
+    }
 }
