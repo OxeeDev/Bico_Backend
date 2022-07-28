@@ -8,12 +8,14 @@ datasource db {
 }
 
 model User {
-  id           Int      @id @default(autoincrement())
-  name         String
-  email        String   @unique
-  password     String
-  cpf_or_cnpj  String
-  age          Int
-  create_at    DateTime @default(now())
-  temp_password String? 
+  id            Int      @id @default(autoincrement())
+  name          String?
+  email         String   @unique
+  password      String?
+  cpf_or_cnpj   String?
+  age           Int?
+  create_at     DateTime @default(now())
+  temp_password String?
+  number        String?
+  sex           String?
 }

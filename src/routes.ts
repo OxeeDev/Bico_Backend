@@ -1,8 +1,12 @@
 // * Importando o metodo ROUTER do express
 import { Router } from "express";
+import { AuthenticateVerify } from "./middlewares/AuthenticateVerify";
+
+
 
 // ! Codigos
 import { createUserController } from "./useCases/UserCase/CreateUser";
+import { getUserController } from "./useCases/UserCase/GetUser/Index";
 import { loginAuthenticationsController } from './useCases/UserCase/LoginAuthentication/Index';
 import { recoveryPasswordController } from './useCases/UserCase/RecoveryPasword/Index';
 
@@ -19,5 +23,9 @@ router.put('/recovery',async (req, res)=>{
 router.post('/authentication', async (req,res) =>{
   return await loginAuthenticationsController.handle(req,res)
 })
+router.get('/user', AuthenticateVerify, async (req, res) => {
+  return await getUserController.handle(req, res)
+})
+
 // ! Exportando as rotas para o app
 export { router }

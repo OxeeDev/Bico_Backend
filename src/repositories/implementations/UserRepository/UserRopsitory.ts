@@ -61,7 +61,10 @@ export class UserRopsitory implements IUserRepository {
       return isok;
   }
   async generateToken(useremail: string): Promise<string> {
-      const senha = await this.generate({"email":useremail},"loli")
+      const senha = await this.generate({"email":useremail},"loli", {
+        subject: `${useremail}`,
+        expiresIn: '7d',
+      })
         return senha;
     }
 }

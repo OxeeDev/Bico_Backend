@@ -12,13 +12,7 @@ export class CreateUser {
     const userAlereadyExists = await this.userRepository.findByEmail(data.email)
     if (userAlereadyExists) throw new Error('Email Já Cadastrado por outro usuario.')
 
-    const user = new User(
-      data.name,
-      data.email,
-      await this.userRepository.encryptpass(data.password),
-      await this.userRepository.encryptpass(data.cpf_or_cnpj),
-      data.age
-    ) 
+    const user = new User(data.email, await this.userRepository.encryptpass(data.password)) 
 
     const result = await this.userRepository.save(user)
 

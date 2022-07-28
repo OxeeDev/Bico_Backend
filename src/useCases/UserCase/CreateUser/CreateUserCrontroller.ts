@@ -7,17 +7,14 @@ export class CreateUserController {
   ) {}
 
   async handle(req: Request, res: Response ) {
-    const { name, email, password, cpf_or_cnpj, age } = req.body
+    const { email, password } = req.body
   
     try {
-      if(!name || !email || !password || !cpf_or_cnpj || !age) throw new Error("Informações incorretas")
+      if(!email || !password) throw new Error("Informações incorretas")
       
       const user = await this.createUser.execute({
-        name,
         email: email.toLowerCase(),
         password: password.toLowerCase(),
-        cpf_or_cnpj,
-        age
       })
 
       return res.json(user)
