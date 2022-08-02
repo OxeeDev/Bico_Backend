@@ -5,8 +5,8 @@ export interface IUserRepository {
   findByUser(id: number): Promise<User>
   save(user: User): Promise<User>
   encryptpass(password: string): Promise<string>
-  randompass():Promise<number>
-  savetemppass(pass: string,email: string): Promise<string> 
+  generatehex():Promise<string>
+  saveinfos(email:string, data:any): Promise<string> 
   comparePass(passdb:string,passuser:string): Promise<boolean>
   generateToken(useremail:string): Promise<string>
 }
