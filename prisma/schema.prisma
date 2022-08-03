@@ -12,6 +12,7 @@ model User {
   email         String   @unique
   password      String
   image_url     String?
+  city          String?
   name          String?
   cpf_or_cnpj   String?  @unique
   age           Int?
@@ -27,6 +28,8 @@ model User_Worker {
   password      String
   job           String
   image_url     String?
+  workerOn      Boolean?
+  city          String?
   rating        Float?
   name          String?
   cpf_or_cnpj   String?  @unique

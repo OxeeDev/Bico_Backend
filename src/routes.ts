@@ -1,8 +1,8 @@
 // * Importando o metodo ROUTER do express
 import { Router } from "express";
-import { AuthenticateVerify } from "./middlewares/AuthenticateVerify";
+import { AuthenticateVerify } from "./middlewares/AuthenticateVerify"
 
-
+// ! Config do Multer
 import multer from "multer";
 import { config } from "./middlewares/multer";
 
@@ -12,6 +12,7 @@ import { getUserController } from "./useCases/UserCase/GetUser/Index";
 import { loginAuthenticationsController } from './useCases/UserCase/LoginAuthentication/Index';
 import { recoveryPasswordController } from './useCases/UserCase/RecoveryPasword/Index';
 import { saveInfosController } from "./useCases/UserCase/SaveInfos/Index";
+import { getUserControllerWorker } from "./useCases/UserCase/GetUserWorker/Index";
 
 const router = Router(); // variavel com as rotas
 
@@ -36,6 +37,11 @@ router.post('/authentication', async (req,res) =>{
 })
 router.get('/user', AuthenticateVerify, async (req, res) => {
   return await getUserController.handle(req, res)
+})
+
+// ? Rotas App Trabalhador
+router.get('/user/worker', AuthenticateVerify, async (req, res) => {
+  return await getUserControllerWorker.handle(req, res)
 })
 
 // ! Exportando as rotas para o app

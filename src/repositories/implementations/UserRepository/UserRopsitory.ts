@@ -11,13 +11,22 @@ export class UserRopsitory implements IUserRepository {
   private cryto: any = crypto
   private compare: Function = compare;
   private generate: Function = jwt.sign;
-  async findByEmail(email: string): Promise<User> {
-    const user = await this.prisma.user.findUnique({
-      where: {
-        email,
-      }
-    });
-
+  async findByEmail(email: string, op: number): Promise<User> {
+    let user
+    if (op == 1) {
+      user = await this.prisma.user.findUnique({
+        where: {
+          email,
+        }
+      });
+    } else if (op == 2) {
+      user = await this.prisma.user_Worker.findUnique({
+        where: {
+          email,
+        }
+      });
+    }
+    
     return user;
   }
 
@@ -67,5 +76,7 @@ export class UserRopsitory implements IUserRepository {
         expiresIn: '7d',
       })
         return senha;
-    }
+  }
+
+
 }

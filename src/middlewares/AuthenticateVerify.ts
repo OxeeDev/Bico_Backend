@@ -11,7 +11,7 @@ export function AuthenticateVerify(req: Request, res: Response, next:NextFunctio
     try {
         const { sub } = verify(token, 'loli');
 
-        req.body.email = sub
+        req.body.email1 = sub
         
         next()
     } catch (
